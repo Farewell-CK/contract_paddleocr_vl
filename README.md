@@ -25,16 +25,16 @@
 
    如需使用 vLLM/SGLang 后端，请参考官方文档执行 `paddleocr install_genai_server_deps vllm` 并启动 `paddleocr genai_server`。
 
-2. **生成示例合同**（在仓库根目录执行）：
+2. **生成示例合同**（在仓库根目录执行，添加 `--images` 以生成 PNG 样本）：
 
    ```bash
-   python generate_synthetic_contracts.py --output-dir data/synthetic_contracts
+   python generate_synthetic_contracts.py --output-dir data/synthetic_contracts --images
    ```
 
 3. **运行一次合同解析**（在仓库根目录执行）：
 
    ```bash
-   python app.py --input data/synthetic_contracts/EN-002.md --output-dir ./ocr_outputs
+   python app.py --input data/synthetic_contracts/EN-002.png --output-dir ./ocr_outputs
    ```
 
    命令会调用 `PaddleOCRVL` 对输入进行解析，将 Markdown/JSON 结果保存到 `ocr_outputs` 并输出提取出来的关键信息。
