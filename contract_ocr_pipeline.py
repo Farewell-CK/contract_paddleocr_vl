@@ -23,7 +23,14 @@ from typing import Dict, Iterable, List, Mapping, Optional, Sequence
 
 from paddleocr import PaddleOCRVL
 
-from .contract_extraction import extract_contract_fields
+if __package__ in (None, ""):
+    import sys
+    from pathlib import Path
+
+    sys.path.append(str(Path(__file__).resolve().parent))
+    from contract_extraction import extract_contract_fields  # type: ignore
+else:
+    from .contract_extraction import extract_contract_fields
 
 logger = logging.getLogger(__name__)
 
@@ -206,4 +213,3 @@ def run_contract_ocr(
 
 
 __all__ = ["run_contract_ocr", "DEFAULT_PIPELINE_KWARGS"]
-

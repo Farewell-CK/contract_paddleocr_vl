@@ -17,7 +17,14 @@ import json
 from pathlib import Path
 from typing import Any, Dict
 
-from .contract_ocr_pipeline import DEFAULT_PIPELINE_KWARGS, run_contract_ocr
+if __package__ in (None, ""):
+    import sys
+    from pathlib import Path
+
+    sys.path.append(str(Path(__file__).resolve().parent))
+    from contract_ocr_pipeline import DEFAULT_PIPELINE_KWARGS, run_contract_ocr  # type: ignore
+else:
+    from .contract_ocr_pipeline import DEFAULT_PIPELINE_KWARGS, run_contract_ocr
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -116,4 +123,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":  # pragma: no cover
     raise SystemExit(main())
-
